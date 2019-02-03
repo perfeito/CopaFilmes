@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieCup.Views.ResultPage"             
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView
+                x:Name="listView"
+                ItemsSource="{Binding Items}"
+                HasUnevenRows="True"
+                BackgroundColor="#A8A8A8"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid
+                                Margin="16,16,16,0"
+                                BackgroundColor="White">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60"/>
+                                </Grid.RowDefinitions>
+                                <Label
+                                    Text="{Binding Key}" 
+                                    BackgroundColor="#6C6C6C"             
+                                    FontAttributes="Bold"
+                                    TextColor="White"
+                                    HorizontalTextAlignment="Center"
+                                    VerticalTextAlignment="Center"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Fill"
+                                    FontSize="Large"/>
+                                <Label 
+                                    Grid.Column="1"
+                                    Text="{Binding Value}"
+                                    BackgroundColor="White"
+                                    TextColor="Black"
+                                    VerticalOptions="Fill"
+                                    HorizontalOptions="Fill"
+                                    HorizontalTextAlignment="Start"
+                                    VerticalTextAlignment="Center"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

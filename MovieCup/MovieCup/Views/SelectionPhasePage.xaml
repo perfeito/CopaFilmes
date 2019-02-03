@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieCup.Views.SelectionPhasePage"
+             Title="{Binding Title}"
+             NavigationPage.BackButtonTitle=""
+             BackgroundColor="White"
+             x:Name="currentPage">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="GERAR" Command="{Binding SendMoviesCommand}" />
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label 
+                Grid.Row="0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                BackgroundColor="#A7A7A7"
+                TextColor="#FFFFFF"
+                Text="{Binding LegendListMovies}"
+                FontAttributes="Bold"/>
+            <ListView
+                ItemTapped="ListView_ItemTapped" 
+                Grid.Row="1"
+                Margin="0,-5,0,0"
+                ItemsSource="{Binding Items}"
+                IsRefreshing="{Binding IsRefreshing}"
+                RefreshCommand="{Binding RefreshCommand}"
+                IsPullToRefreshEnabled="True"
+                HasUnevenRows="True">                
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ViewCell.ContextActions>
+                                <MenuItem Text="Remover" Command="{Binding Source={x:Reference currentPage}, Path=BindingContext.RemoveItemCommand}" CommandParameter="{Binding .}" />
+                            </ViewCell.ContextActions>
+                            <StackLayout 
+                                Margin="20, 0, 0, 0">
+                                <Label Margin="0,6,0,0" Text="{Binding Title}" FontAttributes="Bold" TextColor="Black"/>
+                                <Label Margin="0,0,0,6" Text="{Binding Year}" TextColor="#A9A9A9"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
